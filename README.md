@@ -189,9 +189,7 @@ switch.jidianqi:
   wukong: {"打开电风扇":"/14 -m 1", "打开风扇":"/14 -m 1", "关闭电风扇":"/14 -m 0", "关闭风扇":"/14 -m 0"}
 
 switch.yellow:
-
-  friendly_name: "卧室灯"
-  
+		friendly_name: "卧室灯"
   wukong: {"打开卧室的灯":"/16 -m 1", "打开卧室灯":"/16 -m 1", "关闭卧室的灯":"/16 -m 0", "关闭卧室灯":"/16 -m 0"}
   
 switch.kaiguan:
