@@ -53,9 +53,11 @@ sudo pip3 install homeassistant==0.89.2
 hass --open-ui
 
 配置homeassistant:
+
 nano .homeassistant/configuration.yaml
 
 添加:(注意冒号后加空格)
+
 http:
   api_password: 密码
 api:
