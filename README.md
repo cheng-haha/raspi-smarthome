@@ -169,6 +169,7 @@ switch.pump:
   wukong: {"开始浇水":"turn_on", "浇水":"turn_on", "停止浇水":"turn_off", "结束浇水":"turn_off"}  
 
 我的配置是：
+
 sensor.tempareture:
 
   friendly_name: "环境温度"
