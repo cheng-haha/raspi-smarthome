@@ -8,17 +8,17 @@
 下载emqx：
 
 
-wget https://www.emqx.io/downloads/broker/v3.2.3/emqx-ubuntu16.04-v3.2.3_amd64.deb
+	wget https://www.emqx.io/downloads/broker/v3.2.3/emqx-ubuntu16.04-v3.2.3_amd64.deb
 
 安装
 
-sudo dpkg -i emqx-ubuntu16.04-v3.2.3_amd64.deb
+	sudo dpkg -i emqx-ubuntu16.04-v3.2.3_amd64.deb
 
 启动，查看emq服务
 
-sudo service emqttd start
+	sudo service emqttd start
 
-sudo service emqttd status
+	sudo service emqttd status
 
 使用浏览器打开EMQ控制台，http://127.0.0.1:18083，输入默认用户名:admin，默认密码public。
 
@@ -26,11 +26,11 @@ sudo service emqttd status
 
 接下来需要在树莓派上装一个mqtt客户端：
 
-sudo apt-get install mosquitto-clients
+	sudo apt-get install mosquitto-clients
 
 发布主题测试:
 
-mosquitto_pub -h 服务器ip -t 主题 -m 消息
+	mosquitto_pub -h 服务器ip -t 主题 -m 消息
 
 3.安装hass
 
@@ -39,61 +39,59 @@ mosquitto_pub -h 服务器ip -t 主题 -m 消息
 
 安装python3.6(注意:这里新版hass可能要安装Python3.6才支持！)
 
-sudo add-apt-repository ppa:deadsnakes/ppa
+	sudo add-apt-repository ppa:deadsnakes/ppa
 
-sudo apt-get update
+	sudo apt-get update
 
-sudo apt-get install python3.6
+	sudo apt-get install python3.6
 
 安装python3.6-venv
 
-sudo apt-get install python3.6-venv
+	sudo apt-get install python3.6-venv
 
 创建并启用虚拟环境
 
-cd /opt
+	cd /opt
 
-sudo mkdir hass
+	sudo mkdir hass
 
-cd /hass
+	cd /hass
 
-sudo python3.6 -m venv .
+	sudo python3.6 -m venv .
 
-source bin/activate
+	source bin/activate
 
 我创建在/opt/hass下，你也可以换一个目录
 
 安装一个python包
 
-sudo python3.6 -m pip install wheel
+	sudo python3.6 -m pip install wheel
 
 安装并启动homeassistant的0.89.2版本
 
-sudo pip3 install homeassistant==0.89.2
+	sudo pip3 install homeassistant==0.89.2
 
-hass --open-ui
+	hass --open-ui
 
 配置homeassistant:
 
-nano .homeassistant/configuration.yaml
+	nano .homeassistant/configuration.yaml
 
 添加:(注意冒号后加空格)
-
-http:
-
-  api_password: 密码
-  
-api:
+	
+	http:
+	  api_password: 密码
+  	api:
 
 启动：
 
-cd /opt/hass
+	cd /opt/hass
+	source bin/activate
+	hass --open-ui
 
-source bin/activate
-
-hass --open-ui
-
-退出：deactivate
+退出：
+	
+	deactivate
 
 4.安装redpoint
 
@@ -104,18 +102,25 @@ hass --open-ui
 
 配置文件：
 
-redpoint:
-
-mkdir ~/.homeassistant/custom_components
-
-cd ~/.homeassistant/custom_components
-
-git clone https://github.com/cheng-haha/raspi-smarthome.git
+	redpoint:
 
 
-并修改配置文件：nano .homeassistant/configuration.yaml
 
-加入:redpoint:
+
+	mkdir ~/.homeassistant/custom_components
+
+	cd ~/.homeassistant/custom_components
+
+	git clone https://github.com/cheng-haha/raspi-smarthome.git
+
+
+并修改配置文件：
+	
+	nano .homeassistant/configuration.yaml
+
+加入:
+
+	redpoint:
 
 5.为NodeMCU刷入ESP Easy固件
 
@@ -132,24 +137,24 @@ git clone https://github.com/cheng-haha/raspi-smarthome.git
 
 添加:(注意冒号后加空格)
 
-http:
+	http:
 
-  api_password: 密码
-  
-api:
+	  api_password: 密码
+
+	api:
 
 
 如果你要接入悟空语音助手的话 按照官方文档 在hass目录下编辑这样一个文件：
 
 第二步：
 
-homeassistant:
+        homeassistant:
 
-    url: "http://127.0.0.1"   #切记加上http://，ip或者域名为你的homeassistant的主机
+                url: "http://127.0.0.1"   #切记加上http://，ip或者域名为你的homeassistant的主机
     
-    port: "8123"             # 端口为你的homeassistant的端口和网页端口一样
+                port: "8123"             # 端口为你的homeassistant的端口和网页端口一样
     
-    password: "cxk"  #改成你的密码
+                password: "cxk"  #改成你的密码
 
 第三步：
 
@@ -170,37 +175,24 @@ switch.pump:
 
 我的配置是：
 
-sensor.tempareture:
-
-  friendly_name: "环境温度"
-  
-  wukong: ["查看环境温度", "当前环境温度", "环境温度"]
-  
-sensor.humidity:
-
-	friendly_name: "环境湿度"
+    sensor.tempareture:
+        friendly_name: "环境温度"
+        wukong: ["查看环境温度", "当前环境温度", "环境温度"]
+    sensor.humidity:
+        friendly_name: "环境湿度"
  	wukong: ["查看环境湿度度", "当前环境湿度", "环境湿度"]
-  
-switch.jidianqi:
-
-	friendly_name: "电风扇"
-  
-  	wukong: {"打开电风扇":"/14 -m 1", "打开风扇":"/14 -m 1", "关闭电风扇":"/14 -m 0", "关闭风扇":"/14 -m 0"}
-
-switch.yellow:
-
-	friendly_name: "卧室灯"
-	
-  	wukong: {"打开卧室的灯":"/16 -m 1", "打开卧室灯":"/16 -m 1", "关闭卧室的灯":"/16 -m 0", "关闭卧室灯":"/16 -m 0"}
-  
-switch.kaiguan:
-
-	friendly_name: "客厅灯"
-	
-  	 wukong: {"打开客厅的灯":"/12 -m 1", "打开客厅灯":"/12 -m 1", "关闭客厅的灯":"/12 -m 0", "关闭客厅灯":"/12 -m 0"}
+    switch.jidianqi:
+        friendly_name: "电风扇"
+        wukong: {"打开电风扇":"/14 -m 1", "打开风扇":"/14 -m 1", "关闭电风扇":"/14 -m 0", "关闭风扇":"/14 -m 0"}
+    switch.yellow:
+        friendly_name: "卧室灯"
+	wukong: {"打开卧室的灯":"/16 -m 1", "打开卧室灯":"/16 -m 1", "关闭卧室的灯":"/16 -m 0", "关闭卧室灯":"/16 -m 0"}
+    switch.kaiguan:
+        friendly_name: "客厅灯"
+	wukong: {"打开客厅的灯":"/12 -m 1", "打开客厅灯":"/12 -m 1", "关闭客厅的灯":"/12 -m 0", "关闭客厅灯":"/12 -m 0"}
 
 
-接下来就用你的语音助手开启电器吧
+接下来就用你的语音助手控制智能家居吧吧
 
 
 
