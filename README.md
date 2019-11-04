@@ -2,6 +2,7 @@
 
  树莓派+nodemcu的智能家居
  
+ 
 1.emqx服务
 
 下载emqx：
@@ -124,4 +125,71 @@ git clone https://github.com/cheng-haha/raspi-smarthome.git
 
 然后输入自己家里WiFi和密码让nodemcu连接你家的路由器。20s之后会显示分配到的ip地址，如果没有的话，到路由器管理员界面查看一下分配给Nodemcu的IP地址，即可通过浏览器访问。
 
+6.hass接入语音助手
+ 第一步：
 
+在 homeassistant 的 configuration.yaml 里添加：
+
+添加:(注意冒号后加空格)
+
+http:
+
+  api_password: 密码
+  
+api:
+
+
+如果你要接入悟空语音助手的话 按照官方文档 在hass目录下编辑这样一个文件：
+
+第二步：
+
+homeassistant:
+
+    url: "http://127.0.0.1"   #切记加上http://，ip或者域名为你的homeassistant的主机
+    
+    port: "8123"             # 端口为你的homeassistant的端口和网页端口一样
+    
+    password: "cxk"  #改成你的密码
+
+第三步：
+
+如下是示例的部分配置：
+
+sensor.tempareture:
+  friendly_name: "环境温度"
+  wukong: ["查看环境温度", "当前环境温度", "环境温度"]
+sensor.humidity:
+  friendly_name: "环境湿度"
+  wukong: ["查看环境湿度度", "当前环境湿度", "环境湿度"]
+switch.light:
+  friendly_name: "补光"
+  wukong: {"开始补光":"turn_on", "补光":"turn_on", "停止补光":"turn_off", "结束补光":"turn_off"}
+switch.pump:
+  friendly_name: "浇水"
+  wukong: {"开始浇水":"turn_on", "浇水":"turn_on", "停止浇水":"turn_off", "结束浇水":"turn_off"}  
+
+我的配置是：
+sensor.tempareture:
+  friendly_name: "环境温度"
+  wukong: ["查看环境温度", "当前环境温度", "环境温度"]
+sensor.humidity:
+  friendly_name: "环境湿度"
+  wukong: ["查看环境湿度度", "当前环境湿度", "环境湿度"]
+switch.jidianqi:
+  friendly_name: "电风扇"
+  wukong: {"打开电风扇":"/14 -m 1", "打开风扇":"/14 -m 1", "关闭电风扇":"/14 -m 0", "关闭风扇":"/14 -m 0"}
+switch.yellow:
+  friendly_name: "卧室灯"
+  wukong: {"打开卧室的灯":"/16 -m 1", "打开卧室灯":"/16 -m 1", "关闭卧室的灯":"/16 -m 0", "关闭卧室灯":"/16 -m 0"}
+switch.kaiguan:
+  friendly_name: "客厅灯"
+  wukong: {"打开客厅的灯":"/12 -m 1", "打开客厅灯":"/12 -m 1", "关闭客厅的灯":"/12 -m 0", "关闭客厅灯":"/12 -m 0"}
+
+
+接下来就用你的语音助手开启电器吧
+
+
+
+作者：程东洲  
+
+禁止作为商业用途
