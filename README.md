@@ -59,7 +59,9 @@ nano .homeassistant/configuration.yaml
 添加:(注意冒号后加空格)
 
 http:
+
   api_password: 密码
+  
 api:
 
 启动：
