@@ -1,7 +1,11 @@
 # raspi-smarthome
+
  树莓派+nodemcu的智能家居
+ 
 1.emqx服务
+
 下载emqx：
+
 
 wget https://www.emqx.io/downloads/broker/v3.2.3/emqx-ubuntu16.04-v3.2.3_amd64.deb
 
