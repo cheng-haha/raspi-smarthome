@@ -170,19 +170,33 @@ switch.pump:
 
 我的配置是：
 sensor.tempareture:
+
   friendly_name: "环境温度"
+  
   wukong: ["查看环境温度", "当前环境温度", "环境温度"]
+  
 sensor.humidity:
+
   friendly_name: "环境湿度"
+  
   wukong: ["查看环境湿度度", "当前环境湿度", "环境湿度"]
+  
 switch.jidianqi:
+
   friendly_name: "电风扇"
+  
   wukong: {"打开电风扇":"/14 -m 1", "打开风扇":"/14 -m 1", "关闭电风扇":"/14 -m 0", "关闭风扇":"/14 -m 0"}
+
 switch.yellow:
+
   friendly_name: "卧室灯"
+  
   wukong: {"打开卧室的灯":"/16 -m 1", "打开卧室灯":"/16 -m 1", "关闭卧室的灯":"/16 -m 0", "关闭卧室灯":"/16 -m 0"}
+  
 switch.kaiguan:
+
   friendly_name: "客厅灯"
+  
   wukong: {"打开客厅的灯":"/12 -m 1", "打开客厅灯":"/12 -m 1", "关闭客厅的灯":"/12 -m 0", "关闭客厅灯":"/12 -m 0"}
 
 
